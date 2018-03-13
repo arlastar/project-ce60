@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:padding="15dp"
+    android:layout_height="match_parent"
+    android:background="@drawable/background2">
+    tools:context="com.example.arlastar.login.login">
+
+    <ImageView
+        android:layout_width="150dp"
+        android:layout_height="160dp"
+        android:layout_gravity="center_horizontal"
+        android:padding="16dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginBottom="10dp"
+        android:src="@drawable/person2"/>
+
+    <Button
+        android:id="@+id/bCheckinformation"
+        android:text="Checkinformation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:textAllCaps="true"
+        android:textColor="#fff"
+        android:background="@drawable/background_login_two"
+        android:paddingLeft="48dp"
+        android:paddingRight="48dp"
+        android:layout_marginTop="16dp"/>
+    <ImageView
+        android:layout_width="150dp"
+        android:layout_height="160dp"
+        android:layout_gravity="center_horizontal"
+        android:padding="16dp"
+        android:layout_marginTop="010dp"
+        android:layout_marginBottom="10dp"
+        android:src="@drawable/check8"/>
+
+    <Button
+        android:id="@+id/bCheckname"
+        android:text="Checkname"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:textAllCaps="true"
+        android:textColor="#fff"
+        android:background="@drawable/background_login_two"
+        android:paddingLeft="48dp"
+        android:paddingRight="48dp"
+        android:layout_marginTop="16dp"/>
+
+</LinearLayout>
