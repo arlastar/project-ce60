@@ -9,7 +9,7 @@
     tools:context=".readnfc">
 
 
-
+//666666
     <ScrollView
         android:layout_width="0dp"
         android:layout_height="match_parent"
