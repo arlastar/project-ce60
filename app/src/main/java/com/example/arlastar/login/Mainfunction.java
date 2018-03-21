@@ -6,8 +6,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+
 public class Mainfunction extends AppCompatActivity implements View.OnClickListener {
     Button bCheckinformation, bCheckname;
+
 
 
     @Override
@@ -18,8 +20,10 @@ public class Mainfunction extends AppCompatActivity implements View.OnClickListe
         bCheckname = (Button) findViewById(R.id.bCheckname);
 
         bCheckinformation.setOnClickListener(this);
-        bCheckname.setOnClickListener(this);
-    }
+        bCheckname.setOnClickListener(this);}
+
+
+
 
     @Override
 
@@ -28,6 +32,14 @@ public class Mainfunction extends AppCompatActivity implements View.OnClickListe
             case R.id.bCheckname:
                 startActivity(new Intent(this,readnfc.class));
 
+
+                break;
+
+        }
+        switch (view.getId()) {
+
+            case R.id.bCheckinformation:
+                startActivity(new Intent(this,search.class));
 
                 break;
 
