@@ -8,7 +8,7 @@ import android.widget.Button;
 
 
 public class Mainfunction extends AppCompatActivity implements View.OnClickListener {
-    Button bCheckinformation, bCheckname;
+    Button bCheckinformation, bCheckname,bLogout;
 
 
 
@@ -18,9 +18,12 @@ public class Mainfunction extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_mainfunction);
         bCheckinformation = (Button) findViewById(R.id.bCheckinformation);
         bCheckname = (Button) findViewById(R.id.bCheckname);
+        bLogout = (Button) findViewById(R.id.bLogout);
 
         bCheckinformation.setOnClickListener(this);
-        bCheckname.setOnClickListener(this);}
+        bCheckname.setOnClickListener(this);
+        bLogout.setOnClickListener(this);
+    }
 
 
 
@@ -40,6 +43,14 @@ public class Mainfunction extends AppCompatActivity implements View.OnClickListe
 
             case R.id.bCheckinformation:
                 startActivity(new Intent(this,search.class));
+
+                break;
+
+        }
+        switch (view.getId()) {
+
+            case R.id.bLogout:
+                startActivity(new Intent(this,login.class));
 
                 break;
 

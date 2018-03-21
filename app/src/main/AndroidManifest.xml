@@ -29,10 +29,9 @@
         </activity>
         <activity
             android:name=".Mainfunction"
-            android:label="Mainfunction">
-
-        </activity>
-        <activity android:name=".readnfc"
+            android:label="Mainfunction"></activity>
+        <activity
+            android:name=".readnfc"
             android:label="Put student card attached to phone">
             <intent-filter>
                 <action android:name="android.nfc.action.TECH_DISCOVERED" />
@@ -44,11 +43,10 @@
                 android:name="android.nfc.action.TECH_DISCOVERED"
                 android:resource="@xml/nfc_tech_filter" />
         </activity>
-        <activity android:name=".search"
-            android:label="SearchInformation">
-
-
-        </activity>
+        <activity
+            android:name=".search"
+            android:label="SearchInformation"></activity>
+        <activity android:name=".showinformation"></activity>
     </application>
 
 </manifest>
