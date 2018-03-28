@@ -34,14 +34,14 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class readnfc extends AppCompatActivity {
 
     private NfcAdapter nfcAdapter;
-    TextView textViewInfo, textViewTagInfo, textViewBlock, student_idtxt, statuscode, studentname, student_faculty, student_major, student_firstcheck, student_secondcheck, student_thirdcheck;
-    ImageView imageView;
+    TextView textViewInfo, textViewTagInfo, textViewBlock,TextViewBlock1, student_idtxt, statuscode, studentname, student_faculty, student_major;
+    ImageView imageView,student_firstcheck, student_secondcheck, student_thirdcheck;
     String userID = "";
     String student_id;
     String studentnamestring = "";
     String faculty;
     String major;
-    String url = "http://192.168.1.117:8000";
+    String url = "http://10.66.7.182:8000";
     Boolean firstcheck;
     Boolean secondcheck;
     Boolean thirdcheck;
@@ -49,8 +49,9 @@ public class readnfc extends AppCompatActivity {
     int check;
 
 
+
     Retrofit retrofit = new Retrofit.Builder()
-            .baseUrl("http://192.168.1.117:8000/student/")
+            .baseUrl("http://10.66.7.182:8000/student/")
             .addConverterFactory(GsonConverterFactory.create())
             .build();
     Usercheck getdetail = retrofit.create(Usercheck.class);
@@ -97,6 +98,7 @@ public class readnfc extends AppCompatActivity {
 
         Intent intent =new Intent(this,Mainfunction.class);
         startActivity(intent);
+        finish();
 
     }
 
@@ -160,10 +162,7 @@ public class readnfc extends AppCompatActivity {
             success = false;
         }
 
-        @Override
-        protected void onPreExecute() {
-            textViewBlock.setText("Check Name Successfully ");
-        }
+
 
         @Override
         protected Void doInBackground(Void... params) {
@@ -217,8 +216,10 @@ public class readnfc extends AppCompatActivity {
                 check = 1;
                 getDetail(userID, check);
 
+
             } else {
                 textViewBlock.setText("Fail to read Blocks!!!");
+                textViewBlock.setBackgroundResource(R.color.red);
             }
         }
     }
@@ -242,26 +243,29 @@ public class readnfc extends AppCompatActivity {
                     student_major.setText(major);
                     firstcheck = response.body().getFirstCheck();
                     if (firstcheck) {
-                        student_firstcheck.setText("YES");
+                        student_firstcheck.setImageResource(R.drawable.correct2);
+
 
                     } else
-                        student_firstcheck.setText("NO");
+                        student_firstcheck.setImageResource(R.drawable.wrong);
 
                     secondcheck = response.body().getSecondCheck();
                     if (secondcheck) {
-                        student_secondcheck.setText("YES");
+                        student_secondcheck.setImageResource(R.drawable.correct2);
 
                     } else
-                        student_secondcheck.setText("NO");
+                        student_secondcheck.setImageResource(R.drawable.wrong);
 
                     thirdcheck = response.body().getThirdCheck();
                     if (thirdcheck) {
-                        student_thirdcheck.setText("YES");
+                        student_thirdcheck.setImageResource(R.drawable.correct2);
 
                     } else
-                        student_thirdcheck.setText("NO");
+                        student_thirdcheck.setImageResource(R.drawable.wrong);
                     url = url + response.body().getImage();
                     loadImageFromUrl(url);
+                    textViewBlock.setText("Check Name Successfully ");
+                    textViewBlock.setBackgroundResource(R.color.green);
 
 
 
@@ -269,8 +273,12 @@ public class readnfc extends AppCompatActivity {
 
 
 //                    Toast.makeText(readnfc.this, ""+student_id, Toast.LENGTH_SHORT).show();
-                } else
+                } else {
+                    textViewBlock.setText("Unsuccessfull ");
+                    textViewBlock.setBackgroundResource(R.color.red);
+
                     Toast.makeText(readnfc.this, "" + response.code(), Toast.LENGTH_SHORT).show();
+                }
             }
 
             @Override

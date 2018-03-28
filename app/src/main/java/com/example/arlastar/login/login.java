@@ -22,7 +22,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class login extends AppCompatActivity  {
     Button bLogin;
     EditText etUsername,etPassword;
-    String email,password;
+
 
     Retrofit retrofit = new Retrofit.Builder()
             .baseUrl("http:111.111.111.11")
@@ -50,6 +50,25 @@ public class login extends AppCompatActivity  {
 
 
   public void login(){
+
+      Intent intent =new Intent(login.this,Mainfunction.class);
+      String email = etUsername .getText().toString();
+      String password = etPassword .getText().toString();
+      if(email.equals("kmitl")&& password.equals("12345"))
+      {
+          etUsername.setError(null);
+          finish();
+
+          startActivity(intent);
+
+      }
+      else{
+          Toast.makeText(login.this, "Username and Password does not match" , Toast.LENGTH_SHORT).show();
+
+
+      }
+    }
+}
 //        email = etUsername.getText().toString();
 //        password=etPassword.getText().toString();
 //        Log.i("LoginDetail","email :"+email+"\npassword :"+password);
@@ -67,10 +86,3 @@ public class login extends AppCompatActivity  {
 //            }
 //        });
 
-        Intent intent =new Intent(login.this,Mainfunction.class);
-        startActivity(intent);
-
-}
-
-
-}
