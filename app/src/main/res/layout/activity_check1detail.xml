@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<LinearLayout
+xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:orientation="vertical"
+android:layout_width="match_parent"
+android:padding="10dp"
+android:layout_height="match_parent"
+android:paddingLeft="18dp"
+android:paddingRight="18dp"
+android:paddingTop="@dimen/activity_vertical_margin"
+
+tools:context="com.example.arlastar.login.search">
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Demo Spinner1"
+    android:textSize="18sp"
+    android:id="@+id/lblTitle1"/>
+
+<Spinner
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="44dp"
+    android:id="@+id/spinner"
+    android:layout_below="@+id/lblTitle"
+    android:layout_alignParentLeft="true"
+    android:layout_alignParentStart="true"/>
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Demo Spinner2"
+    android:textSize="18sp"
+    android:id="@+id/lblTitle2"/>
+
+<Spinner
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="44dp"
+    android:id="@+id/spinner2"
+    android:layout_below="@+id/lblTitle"
+    android:layout_alignParentLeft="true"
+    android:layout_alignParentStart="true"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Demo Spinner3"
+        android:textSize="18sp"
+        android:id="@+id/lblTitle3"/>
+
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="44dp"
+        android:id="@+id/spinner3"
+        android:layout_below="@+id/lblTitle"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"/>
+
+    <Button
+        android:id="@+id/button_ok"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="37dp"
+        android:text="ยืนยัน" />
+
+<Button
+    android:id="@+id/bBack"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_horizontal"
+    android:layout_marginTop="16dp"
+    android:background="@drawable/buttonstyle3"
+    android:paddingLeft="48dp"
+    android:paddingRight="48dp"
+    android:layout_marginBottom="10dp"
+    android:text="Back"
+    android:textAllCaps="true"
+    android:textColor="#fff" />
+
+
+</LinearLayout>
+

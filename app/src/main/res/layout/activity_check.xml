@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<LinearLayout
+xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:orientation="vertical"
+android:layout_width="match_parent"
+android:padding="10dp"
+android:layout_height="match_parent"
+android:paddingLeft="18dp"
+android:paddingRight="18dp"
+android:paddingTop="@dimen/activity_vertical_margin"
+
+tools:context="com.example.arlastar.login.search">
+
+<RadioGroup
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_centerInParent="true"
+    android:layout_gravity="center_horizontal"
+    android:id="@+id/radioGroup">
+
+    <RadioButton
+        android:id="@+id/radio0"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="วันซ้อมย่อย"
+        android:checked="true"/>
+
+    <RadioButton
+        android:id="@+id/radio1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="วันซ้อมใหญ่"
+        />
+
+    <RadioButton
+        android:id="@+id/radio2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="วันรับจริง"
+        />
+
+</RadioGroup>
+
+<TextView
+    android:id="@+id/text_view_selected"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_below="@+id/radioGroup"
+    android:layout_centerHorizontal="true"
+    android:layout_gravity="center_horizontal"
+    android:layout_marginTop="27dp"
+    android:text="กรุณาเลือกวันที่ต้องการเช็คชื่อ: "
+    android:textSize="20sp" />
+
+<Button
+    android:id="@+id/button_ok"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_below="@+id/text_view_selected"
+    android:layout_centerHorizontal="true"
+    android:layout_gravity="center_horizontal"
+    android:layout_marginTop="37dp"
+    android:text="ยืนยัน" />
+
+<Button
+    android:id="@+id/bBack"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_horizontal"
+    android:layout_marginTop="16dp"
+    android:background="@drawable/buttonstyle3"
+    android:paddingLeft="48dp"
+    android:paddingRight="48dp"
+    android:layout_marginBottom="10dp"
+    android:text="Back"
+    android:textAllCaps="true"
+    android:textColor="#fff" />
+    <TextView
+        android:id="@+id/tv_result"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/holo_red_dark"
+        android:paddingBottom="15dp"
+        />
+
+
+
+</LinearLayout>
+
+

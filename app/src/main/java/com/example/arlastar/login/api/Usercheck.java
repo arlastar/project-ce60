@@ -13,7 +13,12 @@ public interface Usercheck {
     Call<LoginResponse> createAccount(@Body User user);
 
 
+    @POST("search/")
+    Call<GetResponse> getDetail2(@Body User2 user2);
+
     @POST("check/")
     Call<GetResponse> getDetail(@Body User user);
+
+
 }
 

@@ -64,7 +64,7 @@ public class Mainfunction extends AppCompatActivity implements View.OnClickListe
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.bCheckname:
-                startActivity(new Intent(this,readnfc.class));
+                startActivity(new Intent(this,check.class));
                 finish();
 
 
@@ -92,8 +92,9 @@ public class Mainfunction extends AppCompatActivity implements View.OnClickListe
                         public void onClick(DialogInterface dialog, int which) {
 
                             Intent intent = new Intent(Mainfunction.this,login.class);
-                            startActivity(intent);
                             finish();
+                            startActivity(intent);
+
                         }
                     });
                     builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {

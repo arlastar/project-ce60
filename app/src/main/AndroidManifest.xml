@@ -16,7 +16,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".login">
+        <activity
+            android:name=".login"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -29,12 +31,12 @@
         </activity>
         <activity
             android:name=".Mainfunction"
-            android:label="Mainfunction">
-
-        </activity>
+            android:label="Mainfunction"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".readnfc"
-            android:label="Put student card attached to phone">
+            android:label="Put student card attached to phone"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.nfc.action.TECH_DISCOVERED" />
 
@@ -47,12 +49,14 @@
         </activity>
         <activity
             android:name=".search"
-            android:label="SearchInformation">
-
-        </activity>
-        <activity android:name=".showinformation"
-            android:label="Information of Graduate">
-        </activity>
+            android:label="SearchInformation"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".showinformation"
+            android:label="Information of Graduate"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".check" />
+        <activity android:name=".check1detail"></activity>
     </application>
 
 </manifest>

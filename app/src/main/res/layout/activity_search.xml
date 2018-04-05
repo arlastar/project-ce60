@@ -25,7 +25,7 @@ tools:context="com.example.arlastar.login.search">
         android:padding="16dp"
         android:layout_marginTop="0dp"
         android:layout_marginBottom="1dp"
-        android:src="@drawable/id_card_1"/>
+        android:src="@drawable/kmitl4"/>
     <EditText
         android:id="@+id/etStudentID"
         android:layout_width="match_parent"
@@ -35,9 +35,11 @@ tools:context="com.example.arlastar.login.search">
         android:ems="1"
         android:inputType="number"
         android:hint="Student ID"
-        android:background="#6ef4"
+        android:background="#c7ff932e"
         android:drawablePadding="78dp"
         android:textColorHint="#fff"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
         android:drawableRight="@drawable/ic_person_outline_red_400_24dp"
         />
     <Button
@@ -62,7 +64,7 @@ tools:context="com.example.arlastar.login.search">
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="16dp"
-        android:background="@drawable/buttonstyle1"
+        android:background="@drawable/buttonstyle3"
         android:paddingLeft="48dp"
         android:paddingRight="48dp"
         android:layout_marginBottom="10dp"

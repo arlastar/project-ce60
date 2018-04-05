@@ -37,7 +37,7 @@ public class search extends AppCompatActivity implements View.OnClickListener {
     String studentnamestring = "";
     String faculty;
     String major;
-    String url = "http://10.66.7.182:8000";
+    String url = "http://161.246.35.220:9090/";
     Boolean firstcheck;
     Boolean secondcheck;
     Boolean thirdcheck;
@@ -45,7 +45,7 @@ public class search extends AppCompatActivity implements View.OnClickListener {
     Button bSearch,bBack;
     int check;
     Retrofit retrofit = new Retrofit.Builder()
-            .baseUrl("http://10.66.7.182:8000/student/")
+            .baseUrl("http://161.246.35.220:9090/student/search/")
             .addConverterFactory(GsonConverterFactory.create())
             .build();
     Usercheck getdetail = retrofit.create(Usercheck.class);
@@ -70,6 +70,16 @@ public class search extends AppCompatActivity implements View.OnClickListener {
 
         bSearch.setOnClickListener(this);
         bBack.setOnClickListener(this);
+    }
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(this,Mainfunction.class));
+        finish();
+
+
+
+
+
     }
 
 

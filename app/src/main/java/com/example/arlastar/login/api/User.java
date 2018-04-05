@@ -10,18 +10,19 @@ public class User {
     private String password;
     private String student_id;
     private int check;
+    private String day;
+    private String period;
+    private String place;
 
-    public User(String email, String password) {
-        this.email = email;
-        this.password = password;
-    }
 
     public Integer getId() {
         return id;
     }
 
-    public User(String student_id,int check){
+    public User(String student_id,int check, String day,String period,String place){
         this.student_id = student_id;
         this.check=check;
     }
+
 }
+

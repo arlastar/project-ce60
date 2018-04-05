@@ -36,6 +36,7 @@ public class GetResponse {
     }
 
 
+
     public String getNameTitle() {
         return nameTitle;
     }

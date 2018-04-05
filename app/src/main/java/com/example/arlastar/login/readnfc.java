@@ -41,17 +41,18 @@ public class readnfc extends AppCompatActivity {
     String studentnamestring = "";
     String faculty;
     String major;
-    String url = "http://10.66.7.182:8000";
+    String url = "http://161.246.35.220:9090/";
     Boolean firstcheck;
     Boolean secondcheck;
     Boolean thirdcheck;
     Button bBack;
     int check;
-
-
+    String day;
+    String period;
+    String place;
 
     Retrofit retrofit = new Retrofit.Builder()
-            .baseUrl("http://10.66.7.182:8000/student/")
+            .baseUrl("http://161.246.35.220:9090/student/check/")
             .addConverterFactory(GsonConverterFactory.create())
             .build();
     Usercheck getdetail = retrofit.create(Usercheck.class);
@@ -94,11 +95,23 @@ public class readnfc extends AppCompatActivity {
         }
 
     }
-    public void Back(){
-
+    @Override
+    public void onBackPressed() {
         Intent intent =new Intent(this,Mainfunction.class);
         startActivity(intent);
         finish();
+
+
+
+
+
+    }
+    public void Back(){
+
+        Intent intent =new Intent(this,check.class);
+        startActivity(intent);
+        finish();
+
 
     }
 
@@ -139,7 +152,7 @@ public class readnfc extends AppCompatActivity {
 
     }
 
-    private class ReadMifareClassicTask extends AsyncTask<Void, Void, Void> {
+    private class ReadMifareClassicTask extends AsyncTask<Void, String, Void> {
 
         /*
         MIFARE Classic tags are divided into sectors, and each sector is sub-divided into blocks.
@@ -155,7 +168,15 @@ public class readnfc extends AppCompatActivity {
         final int numOfSector = 16;
         final int numOfBlockInSector = 4;
         byte[][][] buffer = new byte[numOfSector][numOfBlockInSector][MifareClassic.BLOCK_SIZE];
+        private boolean isTaskCancelled = false;
 
+        public void cancelTask(){
+            isTaskCancelled = true;
+        }
+
+        private boolean isTaskCancelled(){
+            return isTaskCancelled;
+        }
 
         ReadMifareClassicTask(MifareClassic tag) {
             taskTag = tag;
@@ -165,32 +186,37 @@ public class readnfc extends AppCompatActivity {
 
 
         @Override
-        protected Void doInBackground(Void... params) {
+        protected Void doInBackground(Void... ignoredparams) {
 
-            try {
-                taskTag.connect();
+                try {
 
-                for (int s = 13; s < 14; s++) {
-                    if (taskTag.authenticateSectorWithKeyA(s, myKeyA)) {
-                        for (int b = 1; b < 2; b++) {
-                            int blockIndex = (s * numOfBlockInSector) + b;
-                            buffer[s][b] = taskTag.readBlock(blockIndex);
+                    taskTag.connect();
+
+                    for (int s = 13; s < 14; s++) {
+                        if (taskTag.authenticateSectorWithKeyA(s, myKeyA)) {
+                            for (int b = 1; b < 2; b++) {
+                                int blockIndex = (s * numOfBlockInSector) + b;
+                                buffer[s][b] = taskTag.readBlock(blockIndex);
+                            }
                         }
                     }
+
+                    success = true;
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } finally {
+                    if (taskTag != null) {
+                        try {
+                            taskTag.close();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+
                 }
 
-                success = true;
-            } catch (IOException e) {
-                e.printStackTrace();
-            } finally {
-                if (taskTag != null) {
-                    try {
-                        taskTag.close();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
+
+
 
             return null;
         }
@@ -213,8 +239,8 @@ public class readnfc extends AppCompatActivity {
                     }
                 }
                 // textViewBlock.setText(userID);
-                check = 1;
-                getDetail(userID, check);
+
+                getDetail(userID, check,day,period,place);
 
 
             } else {
@@ -224,9 +250,9 @@ public class readnfc extends AppCompatActivity {
         }
     }
 
-    private void getDetail(String inputIDstring, int check) {
+    private void getDetail(String inputIDstring, int check,String day,String period,String place) {
 //        Toast.makeText(this, "getDetail", Toast.LENGTH_SHORT).show();
-        User id = new User(inputIDstring, 1);
+        User id = new User(inputIDstring, check,day,period,place);
         Call<GetResponse> call = getdetail.getDetail(id);
         call.enqueue(new Callback<GetResponse>() {
             @Override

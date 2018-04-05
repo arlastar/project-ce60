@@ -6,6 +6,8 @@ import android.nfc.Tag;
 import android.nfc.tech.MifareClassic;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -19,6 +21,7 @@ import android.widget.Toast;
 
 import com.example.arlastar.login.api.GetResponse;
 import com.example.arlastar.login.api.User;
+import com.example.arlastar.login.api.User2;
 import com.example.arlastar.login.api.Usercheck;
 import com.squareup.picasso.Picasso;
 
@@ -30,26 +33,28 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class showinformation extends AppCompatActivity implements View.OnClickListener {
-    TextView textViewInfo, textViewTagInfo,tv, textViewBlock, student_idtxt, statuscode, studentname, student_faculty, student_major, student_firstcheck, student_secondcheck, student_thirdcheck;
-    ImageView imageView;
+    TextView textViewInfo, textViewTagInfo,tv, textViewBlock, student_idtxt, statuscode, studentname, student_faculty, student_major;
+    ImageView imageView,student_firstcheck, student_secondcheck, student_thirdcheck;
+
     String userID = "";
     String student_id;
     String studentnamestring = "";
     String faculty;
     String major;
-    String url = "http://10.66.7.182:8000";
+    String url = "http://161.246.35.220:9090/";
     Boolean firstcheck;
     Boolean secondcheck;
     Boolean thirdcheck;
     Button bBack;
     String IDstudent;
+    String first_check,second_check,third_check;
 
-    int check;
+
     Retrofit retrofit = new Retrofit.Builder()
-            .baseUrl("http://10.66.7.182:8000/student/")
+            .baseUrl("http://161.246.35.220:9090/student/search/")
             .addConverterFactory(GsonConverterFactory.create())
             .build();
-    Usercheck getdetail = retrofit.create(Usercheck.class);
+    Usercheck getdetail2 = retrofit.create(Usercheck.class);
 
 
 
@@ -59,10 +64,7 @@ public class showinformation extends AppCompatActivity implements View.OnClickLi
         setContentView(R.layout.activity_showinformation);
         bBack = findViewById(R.id.bBack);
         textViewBlock = (TextView) findViewById(R.id.block);
-        tv =(TextView) findViewById(R.id.inte);
         IDstudent = getIntent().getExtras().getString("ID");
-
-        tv.setText(IDstudent);
         studentname = findViewById(R.id.studentname);
         student_idtxt = findViewById(R.id.student_idtxt);
         student_faculty = findViewById(R.id.student_faculty);
@@ -71,22 +73,29 @@ public class showinformation extends AppCompatActivity implements View.OnClickLi
         student_secondcheck = findViewById(R.id.student_secondcheck);
         student_thirdcheck = findViewById(R.id.student_thirdcheck);
         imageView = (ImageView)findViewById(R.id.imageView);
-        check = 0;
-        getDetail(IDstudent, check);
-
-
-
-
-
-
-
-
+        first_check = "3";
+        second_check = "3";
+        third_check = "3";
+        getDetail2(IDstudent,first_check,second_check,third_check);
         bBack.setOnClickListener(this);
     }
-    private void getDetail(String IDstudent, int check) {
-//        Toast.makeText(this, "getDetail", Toast.LENGTH_SHORT).show();
-        User id = new User(IDstudent, 0);
-        Call<GetResponse> call = getdetail.getDetail(id);
+    @Override
+    public void onBackPressed() {
+                startActivity(new Intent(this,search.class));
+                finish();
+
+
+
+
+
+    }
+
+
+
+    private void getDetail2(String IDstudent, String first_check,String second_check,String third_check) {
+//        Toast.makeText(this, "getDetail2", Toast.LENGTH_SHORT).show();
+        User2 id = new User2(IDstudent, "3","3","3");
+        Call<GetResponse> call = getdetail2.getDetail2(id);
         call.enqueue(new Callback<GetResponse>() {
             @Override
             public void onResponse(Call<GetResponse> call, Response<GetResponse> response) {
@@ -102,26 +111,27 @@ public class showinformation extends AppCompatActivity implements View.OnClickLi
                     student_major.setText(major);
                     firstcheck = response.body().getFirstCheck();
                     if (firstcheck) {
-                        student_firstcheck.setText("YES");
+                        student_firstcheck.setImageResource(R.drawable.correct2);
+
 
                     } else
-                        student_firstcheck.setText("NO");
+                        student_firstcheck.setImageResource(R.drawable.wrong);
 
                     secondcheck = response.body().getSecondCheck();
                     if (secondcheck) {
-                        student_secondcheck.setText("YES");
+                        student_secondcheck.setImageResource(R.drawable.correct2);
 
                     } else
-                        student_secondcheck.setText("NO");
+                        student_secondcheck.setImageResource(R.drawable.wrong);
 
                     thirdcheck = response.body().getThirdCheck();
                     if (thirdcheck) {
-                        student_thirdcheck.setText("YES");
+                        student_thirdcheck.setImageResource(R.drawable.correct2);
 
                     } else
-                        student_thirdcheck.setText("NO");
-                    url = url + response.body().getImage();
-                    loadImageFromUrl(url);
+                        student_thirdcheck.setImageResource(R.drawable.wrong);
+                  //  url = url + response.body().getImage();
+                    //loadImageFromUrl(url);
 
 
 
