@@ -7,5 +7,7 @@
     <color name ="red">#F44336</color>
     <color name ="orange">#ff8747</color>
     <color name ="orange1">#c7ff932e</color>
+    <color name ="orange2">#71ff932e</color>
+    <color name ="black">#000000</color>
 
 </resources>

@@ -44,11 +44,11 @@ public class search extends AppCompatActivity implements View.OnClickListener {
     EditText etStudentID;
     Button bSearch,bBack;
     int check;
-    Retrofit retrofit = new Retrofit.Builder()
-            .baseUrl("http://161.246.35.220:9090/student/search/")
+   /* Retrofit retrofit = new Retrofit.Builder()
+            .baseUrl("http://161.246.35.220:9090/")
             .addConverterFactory(GsonConverterFactory.create())
             .build();
-    Usercheck getdetail = retrofit.create(Usercheck.class);
+    Usercheck getdetail = retrofit.create(Usercheck.class);*/
 
 
 

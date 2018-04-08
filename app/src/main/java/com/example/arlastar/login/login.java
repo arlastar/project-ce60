@@ -37,6 +37,7 @@ public class login extends AppCompatActivity  {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        Log.i("login", "onCreate");
         etUsername = (EditText) findViewById(R.id.etUsername);
         etPassword = (EditText) findViewById(R.id.etPassword);
         bLogin = (Button) findViewById(R.id.bLogin);
@@ -65,10 +66,10 @@ public class login extends AppCompatActivity  {
       if(email.equals("kmitl")&& password.equals("12345"))
       {
           etUsername.setError(null);
-          finish();
+
 
           startActivity(intent);
-
+          finish();
       }
       else{
           Toast.makeText(login.this, "Username and Password does not match" , Toast.LENGTH_SHORT).show();

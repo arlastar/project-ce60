@@ -3,33 +3,22 @@
     <string name="pressbackagain">pressback again to exit</string>
 
     <string-array name="place_array">
-        <item>Mercury</item>
-        <item>Venus</item>
-        <item>Earth</item>
-        <item>Mars</item>
-        <item>Jupiter</item>
-        <item>Saturn</item>
-        <item>Sun</item>
-        <item>Ganimed</item>
+        <item>หอประชุมจุฬาภรณวลัยลักษณ์ ชั้น 1</item>
+        <item>วหอประชุมจุฬาภรณวลัยลักษณ์ ชั้น 2</item>
+        <item>หอประชุมใหญ่สถาบันฯ(คณะวิศวกรรมศาสตร์)</item>
+        <item>ห้องประชุมอาคารปฏิบัติการออกแบบรวมและบริการเชิงบูรณาการ ชั้น 4 คณะสถาปัตยกรรมศาสตร์</item>
+        <item>วหอประชุม ศ.ประสม รังสิโรจน์</item>
+        <item>ห้องประชุมดาวดึงส์ วิทยาเขตชุมพรเขตรอุดมศักดิ์</item>
+
     </string-array>
     <string-array name="date_array">
-        <item>Mercury</item>
-        <item>Venus</item>
-        <item>Earth</item>
-        <item>Mars</item>
-        <item>Jupiter</item>
-        <item>Saturn</item>
-        <item>Sun</item>
-        <item>Ganimed</item>
+        <item>วันอาทิตย์ที่ 15 ตุลาคม 2560</item>
+        <item>วันเสาร์ที่ 28 ตุลาคม 2560</item>
+        <item>วันอาทิตย์ที่ 29 ตุลาคม 2560</item>
     </string-array>
     <string-array name="time_array">
-        <item>Mercury</item>
-        <item>Venus</item>
-        <item>Earth</item>
-        <item>Mars</item>
-        <item>Jupiter</item>
-        <item>Saturn</item>
-        <item>Sun</item>
-        <item>Ganimed</item>
+        <item>รอบเช้า</item>
+        <item>รอบบ่าย</item>
+
     </string-array>
 </resources>

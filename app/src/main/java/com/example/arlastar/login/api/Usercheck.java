@@ -1,7 +1,10 @@
 package com.example.arlastar.login.api;
 
+import java.util.List;
+
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.GET;
 import retrofit2.http.POST;
 import okhttp3.ResponseBody;
 /**
@@ -14,10 +17,14 @@ public interface Usercheck {
 
 
     @POST("search/")
-    Call<GetResponse> getDetail2(@Body User2 user2);
+    Call<List<GetResponse>> getDetail2(@Body User2 user2);
 
-    @POST("check/")
+    @POST("student/check/")
     Call<GetResponse> getDetail(@Body User user);
+
+
+    @GET("place/")
+    Call<List<placeresponse>> placeresponse();
 
 
 }

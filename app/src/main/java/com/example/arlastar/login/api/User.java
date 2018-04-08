@@ -22,6 +22,10 @@ public class User {
     public User(String student_id,int check, String day,String period,String place){
         this.student_id = student_id;
         this.check=check;
+        this.day=day;
+        this.period=period;
+        this.place=place;
+
     }
 
 }

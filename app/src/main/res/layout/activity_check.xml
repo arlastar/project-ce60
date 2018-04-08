@@ -13,12 +13,32 @@ android:paddingLeft="18dp"
 android:paddingRight="18dp"
 android:paddingTop="@dimen/activity_vertical_margin"
 
-tools:context="com.example.arlastar.login.search">
+tools:context="com.example.arlastar.login.check">
+    <ImageView
+        android:layout_width="150dp"
+        android:layout_height="160dp"
+        android:layout_gravity="center_horizontal"
+        android:padding="16dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginBottom="1dp"
+        android:src="@drawable/kmitl4"/>
+    <TextView
+        android:id="@+id/text_view_selected"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/radioGroup"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="2dp"
+        android:text="กรุณาเลือกวันที่ต้องการเช็คชื่อ: "
+        android:textSize="20sp" />
 
-<RadioGroup
+
+    <RadioGroup
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_centerInParent="true"
+        android:layout_marginTop="22dp"
     android:layout_gravity="center_horizontal"
     android:id="@+id/radioGroup">
 
@@ -45,26 +65,15 @@ tools:context="com.example.arlastar.login.search">
 
 </RadioGroup>
 
-<TextView
-    android:id="@+id/text_view_selected"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_below="@+id/radioGroup"
-    android:layout_centerHorizontal="true"
-    android:layout_gravity="center_horizontal"
-    android:layout_marginTop="27dp"
-    android:text="กรุณาเลือกวันที่ต้องการเช็คชื่อ: "
-    android:textSize="20sp" />
 
-<Button
-    android:id="@+id/button_ok"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_below="@+id/text_view_selected"
-    android:layout_centerHorizontal="true"
-    android:layout_gravity="center_horizontal"
-    android:layout_marginTop="37dp"
-    android:text="ยืนยัน" />
+    <Button
+        android:id="@+id/button_ok"
+        android:layout_width="wrap_content"
+        android:layout_height="37dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="37dp"
+        android:background="@drawable/background_btn2"
+        android:text="ยืนยัน" />
 
 <Button
     android:id="@+id/bBack"

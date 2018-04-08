@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
@@ -17,6 +18,9 @@ public class check extends AppCompatActivity implements View.OnClickListener {
     RadioButton radioButton;
     TextView textView,tv_result;
     Button bOK,bBack;
+    int checkID;
+    String day;
+
 
 
     @Override
@@ -25,6 +29,7 @@ public class check extends AppCompatActivity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         tv_result = (TextView) findViewById(R.id.tv_result);
         setContentView(R.layout.activity_check);
+        Log.i("check", "onCreate");
         radioGroup = findViewById(R.id.radioGroup);
         textView = findViewById(R.id.text_view_selected);
         bOK = (Button) findViewById(R.id.button_ok);
@@ -32,43 +37,57 @@ public class check extends AppCompatActivity implements View.OnClickListener {
         bBack = (Button) findViewById(R.id.bBack);
         bBack.setOnClickListener(this);
 
-        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener()
-        {
 
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
-
-                switch(checkedId){
-                    case R.id.radio0:
-                        // do operations specific to this selection
-                        break;
-                    case R.id.radio1:
-                        // do operations specific to this selection
-                        break;
-                    case R.id.radio2:
-                        // do operations specific to this selection
-                        break;
-                }
-            }
-        });
     }
 
 
     public void onClick(View view) {
         int selectedRadioButtonID = radioGroup.getCheckedRadioButtonId();
         radioButton = findViewById(selectedRadioButtonID);
-        if (selectedRadioButtonID != -1) {
+        Log.i("check", String.valueOf(view.getId()));
             switch (view.getId()) {
+
                 case R.id.button_ok:
-                    if (selectedRadioButtonID == R.id.radio0) {
-                        startActivity(new Intent(this, check1detail.class));
+                    Log.i("check", String.valueOf(radioGroup.getCheckedRadioButtonId()));
+                    if (radioGroup.getCheckedRadioButtonId() == R.id.radio0) {
+                        //startActivity(new Intent(this, check1detail.class));
+                        int checkID = 1;
+                        Intent intent = new Intent(check.this,check1detail.class);
+                        intent.putExtra("check", checkID);
+                        startActivity(intent);
                         finish();
                         break;
                     }
-                    else{
-                        startActivity(new Intent(this, readnfc.class));
+                    else if(selectedRadioButtonID == R.id.radio1){
+                        int checkID = 2;
+                        Intent intent = new Intent(check.this,readnfc.class);
+                        intent.putExtra("check", 2);
+                       /* String day ="0";
+                        intent.putExtra("day", day);
+                        String period ="0";
+                        intent.putExtra("period", period);
+                        String place ="0";
+                        intent.putExtra("place", place);*/
+                        check.this.startActivity(intent);
+
                         finish();
                         break;
 
+                    }
+                    else {
+                        int checkID = 3;
+                        Intent intent = new Intent(check.this,readnfc.class);
+                        intent.putExtra("check", 3);
+                       /* String day ="0";
+                        intent.putExtra("day", day);
+                        String period ="0";
+                        intent.putExtra("period", period);
+                        String place ="0";
+                        intent.putExtra("place", place);*/
+                        check.this.startActivity(intent);
+
+                        finish();
+                        break;
                     }
                 case R.id.bBack:
                     startActivity(new Intent(this, Mainfunction.class));
@@ -76,13 +95,11 @@ public class check extends AppCompatActivity implements View.OnClickListener {
                     break;
             }
         }
-        else{
-            tv_result.setText("Nothing selected from Radio Group.");
-        }
+
 
 
 
 
 
     }
-}
+

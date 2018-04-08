@@ -55,8 +55,10 @@
             android:name=".showinformation"
             android:label="Information of Graduate"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".check" />
-        <activity android:name=".check1detail"></activity>
+        <activity android:name=".check"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".check1detail"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

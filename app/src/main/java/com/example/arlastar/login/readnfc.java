@@ -42,17 +42,20 @@ public class readnfc extends AppCompatActivity {
     String faculty;
     String major;
     String url = "http://161.246.35.220:9090/";
+    String url1 = "http://161.246.35.220:9090";
     Boolean firstcheck;
     Boolean secondcheck;
     Boolean thirdcheck;
     Button bBack;
     int check;
-    String day;
-    String period;
-    String place;
+    int checkID;
+
+    String day="";
+    String period="";
+    String place="";
 
     Retrofit retrofit = new Retrofit.Builder()
-            .baseUrl("http://161.246.35.220:9090/student/check/")
+            .baseUrl("http://161.246.35.220:9090/")
             .addConverterFactory(GsonConverterFactory.create())
             .build();
     Usercheck getdetail = retrofit.create(Usercheck.class);
@@ -61,10 +64,16 @@ public class readnfc extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nfc);
+        Intent intent = getIntent();
+        checkID = intent.getIntExtra("check", 0);
+        /*day = getIntent().getExtras().getString("day");
+        period = getIntent().getExtras().getString("period");
+        place = getIntent().getExtras().getString("place");*/
         textViewInfo = (TextView) findViewById(R.id.info);
         //textViewTagInfo = (TextView)findViewById(R.id.taginfo);
         textViewBlock = (TextView) findViewById(R.id.block);
         //statuscode=findViewById(R.id.statuscode);
+
         studentname = findViewById(R.id.studentname);
         nfcAdapter = NfcAdapter.getDefaultAdapter(this);
         student_idtxt = findViewById(R.id.student_idtxt);
@@ -238,9 +247,9 @@ public class readnfc extends AppCompatActivity {
                         }
                     }
                 }
-                // textViewBlock.setText(userID);
-
-                getDetail(userID, check,day,period,place);
+               // textViewBlock.setText(userID);
+                //if(day  != "")&&(period)
+                getDetail(userID, checkID,day,period,place);
 
 
             } else {
@@ -250,9 +259,9 @@ public class readnfc extends AppCompatActivity {
         }
     }
 
-    private void getDetail(String inputIDstring, int check,String day,String period,String place) {
+    private void getDetail(String inputIDstring, int checkID,String day,String period,String place) {
 //        Toast.makeText(this, "getDetail", Toast.LENGTH_SHORT).show();
-        User id = new User(inputIDstring, check,day,period,place);
+        User id = new User(inputIDstring, checkID,day,period,place);
         Call<GetResponse> call = getdetail.getDetail(id);
         call.enqueue(new Callback<GetResponse>() {
             @Override
@@ -288,8 +297,8 @@ public class readnfc extends AppCompatActivity {
 
                     } else
                         student_thirdcheck.setImageResource(R.drawable.wrong);
-                    url = url + response.body().getImage();
-                    loadImageFromUrl(url);
+                    url1 = url1 + response.body().getImage();
+                    loadImageFromUrl(url1);
                     textViewBlock.setText("Check Name Successfully ");
                     textViewBlock.setBackgroundResource(R.color.green);
 
@@ -300,7 +309,7 @@ public class readnfc extends AppCompatActivity {
 
 //                    Toast.makeText(readnfc.this, ""+student_id, Toast.LENGTH_SHORT).show();
                 } else {
-                    textViewBlock.setText("Unsuccessfull ");
+                    textViewBlock.setText(userID );
                     textViewBlock.setBackgroundResource(R.color.red);
 
                     Toast.makeText(readnfc.this, "" + response.code(), Toast.LENGTH_SHORT).show();
@@ -314,8 +323,8 @@ public class readnfc extends AppCompatActivity {
         });
 
     }
-    private void loadImageFromUrl (String url){
-        Picasso.with(this).load(url).placeholder(R.mipmap.ic_launcher)
+    private void loadImageFromUrl (String url1){
+        Picasso.with(this).load(url1).placeholder(R.mipmap.ic_launcher)
         .error(R.mipmap.ic_launcher)
         .into(imageView,new com.squareup.picasso.Callback(){
             @Override
