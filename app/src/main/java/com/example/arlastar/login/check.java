@@ -53,7 +53,7 @@ public class check extends AppCompatActivity implements View.OnClickListener {
                         //startActivity(new Intent(this, check1detail.class));
                         int checkID = 1;
                         Intent intent = new Intent(check.this,check1detail.class);
-                        intent.putExtra("check", checkID);
+                        intent.putExtra("check", 1);
                         startActivity(intent);
                         finish();
                         break;
@@ -68,7 +68,7 @@ public class check extends AppCompatActivity implements View.OnClickListener {
                         intent.putExtra("period", period);
                         String place ="0";
                         intent.putExtra("place", place);*/
-                        check.this.startActivity(intent);
+                        startActivity(intent);
 
                         finish();
                         break;

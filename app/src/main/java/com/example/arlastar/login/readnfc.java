@@ -1,6 +1,7 @@
 package com.example.arlastar.login;
 
 
+import android.app.PendingIntent;
 import android.content.Intent;
 import android.nfc.NfcAdapter;
 import android.nfc.Tag;
@@ -8,6 +9,7 @@ import android.nfc.tech.MifareClassic;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -15,6 +17,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 
 import android.widget.Toast;
 
@@ -36,7 +39,10 @@ public class readnfc extends AppCompatActivity {
     private NfcAdapter nfcAdapter;
     TextView textViewInfo, textViewTagInfo, textViewBlock,TextViewBlock1, student_idtxt, statuscode, studentname, student_faculty, student_major;
     ImageView imageView,student_firstcheck, student_secondcheck, student_thirdcheck;
-    String userID = "";
+    byte[] userID1 = {};
+
+    String userID = new String(userID1, "UTF-8");
+    //String userID = "";
     String student_id;
     String studentnamestring = "";
     String faculty;
@@ -47,25 +53,43 @@ public class readnfc extends AppCompatActivity {
     Boolean secondcheck;
     Boolean thirdcheck;
     Button bBack;
-    int check;
-    int checkID;
 
+
+   // int checkID = intent.getIntExtra("check", 0);
+    int checkID;
     String day="";
     String period="";
     String place="";
+   /* Intent intent = getIntent();
+    int checkID = intent.getIntExtra("check", 0);*/
 
     Retrofit retrofit = new Retrofit.Builder()
             .baseUrl("http://161.246.35.220:9090/")
             .addConverterFactory(GsonConverterFactory.create())
             .build();
     Usercheck getdetail = retrofit.create(Usercheck.class);
+    PendingIntent pendingIntent;
+
+    public readnfc() throws UnsupportedEncodingException {
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nfc);
         Intent intent = getIntent();
-        checkID = intent.getIntExtra("check", 0);
+        String action = intent.getAction();
+
+
+        //Intent intent = getIntent();
+        checkID = intent.getIntExtra("check",0 );
+        day = intent.getStringExtra("day");
+        period = intent.getStringExtra("period");
+        place = intent.getStringExtra("place");
+        Log.i("readnfc", "checkID " + String.valueOf(checkID));
+        Log.i("readnfc", "day " + String.valueOf(day));
+        Log.i("readnfc", "period " + String.valueOf(period));
+        Log.i("readnfc", "place " + String.valueOf(place));
         /*day = getIntent().getExtras().getString("day");
         period = getIntent().getExtras().getString("period");
         place = getIntent().getExtras().getString("place");*/
@@ -75,7 +99,9 @@ public class readnfc extends AppCompatActivity {
         //statuscode=findViewById(R.id.statuscode);
 
         studentname = findViewById(R.id.studentname);
+
         nfcAdapter = NfcAdapter.getDefaultAdapter(this);
+
         student_idtxt = findViewById(R.id.student_idtxt);
         student_faculty = findViewById(R.id.student_faculty);
         student_major = findViewById(R.id.student_major);
@@ -96,12 +122,58 @@ public class readnfc extends AppCompatActivity {
                     "NFC NOT supported on this devices!",
                     Toast.LENGTH_LONG).show();
             finish();
-        } else if (!nfcAdapter.isEnabled()) {
-            Toast.makeText(this,
-                    "NFC NOT Enabled!",
-                    Toast.LENGTH_LONG).show();
-            finish();
+    } else if (!nfcAdapter.isEnabled()) {
+        Toast.makeText(this,
+                "NFC NOT Enabled!",
+                Toast.LENGTH_LONG).show();
+        finish();
+    }
+
+        pendingIntent = PendingIntent.getActivity(this, 0, new Intent(this,
+                getClass()).addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP), 0);
+  /*      if (NfcAdapter.ACTION_TECH_DISCOVERED.equals(action)) {
+//            Toast.makeText(this,
+//                    "onResume() - ACTION_TECH_DISCOVERED",
+//                    Toast.LENGTH_SHORT).show();
+
+            Tag tag = intent.getParcelableExtra(NfcAdapter.EXTRA_TAG);
+            if (tag == null) {
+                textViewInfo.setText("tag == null");
+            } else {
+                String tagInfo = tag.toString() + "\n";
+                Log.i("readnfc", "tagInfo " + String.valueOf(checkID));
+                //Only android.nfc.tech.MifareClassic specified in nfc_tech_filter.xml,
+                //so must be MifareClassic
+                //if (checkID == 0) {
+                    readMifareClassic(tag);
+                //}
+            }
+        } else {
+//            Toast.makeText(this,
+//                    "onResume() : " + action,
+//                    Toast.LENGTH_SHORT).show();
+        }*/
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent){
+        getTagInfo(intent);
+    }
+
+    private void getTagInfo(Intent intent) {
+        Tag tag = intent.getParcelableExtra(NfcAdapter.EXTRA_TAG);
+        if (tag == null) {
+            textViewInfo.setText("tag == null");
+        } else {
+            String tagInfo = tag.toString() + "\n";
+            Log.i("readnfc", "tagInfo " + String.valueOf(checkID));
+            //Only android.nfc.tech.MifareClassic specified in nfc_tech_filter.xml,
+            //so must be MifareClassic
+            //if (checkID == 0) {
+            readMifareClassic(tag);
+            //}
         }
+        //Start for Camera
 
     }
     @Override
@@ -127,30 +199,16 @@ public class readnfc extends AppCompatActivity {
 
     @Override
     protected void onResume() {
+        nfcAdapter.enableForegroundDispatch(this, pendingIntent, null, null);
         super.onResume();
+    }
 
-        Intent intent = getIntent();
-        String action = intent.getAction();
-
-        if (NfcAdapter.ACTION_TECH_DISCOVERED.equals(action)) {
-//            Toast.makeText(this,
-//                    "onResume() - ACTION_TECH_DISCOVERED",
-//                    Toast.LENGTH_SHORT).show();
-
-            Tag tag = intent.getParcelableExtra(NfcAdapter.EXTRA_TAG);
-            if (tag == null) {
-                textViewInfo.setText("tag == null");
-            } else {
-                String tagInfo = tag.toString() + "\n";
-                //Only android.nfc.tech.MifareClassic specified in nfc_tech_filter.xml,
-                //so must be MifareClassic
-                readMifareClassic(tag);
-            }
-        } else {
-//            Toast.makeText(this,
-//                    "onResume() : " + action,
-//                    Toast.LENGTH_SHORT).show();
+    @Override
+    protected void onPause() {
+        if (nfcAdapter != null) {
+            nfcAdapter.disableForegroundDispatch(this);
         }
+        super.onPause();
     }
 
     public void readMifareClassic(Tag tag) {
@@ -196,7 +254,7 @@ public class readnfc extends AppCompatActivity {
 
         @Override
         protected Void doInBackground(Void... ignoredparams) {
-
+                Log.i("readnfc", "doInBackground");
                 try {
 
                     taskTag.connect();
@@ -234,6 +292,7 @@ public class readnfc extends AppCompatActivity {
         protected void onPostExecute(Void aVoid) {
 
             //display block
+            userID = "";
             if (success) {
 
                 String stringBlock = "";
@@ -249,8 +308,11 @@ public class readnfc extends AppCompatActivity {
                 }
                // textViewBlock.setText(userID);
                 //if(day  != "")&&(period)
-                getDetail(userID, checkID,day,period,place);
+                Log.i("readnfc", userID + " " + String.valueOf(checkID) + " " + day + " " + period + " " + place);
 
+
+                getDetail(userID, checkID,day,period,place);
+                //checkID = 0;
 
             } else {
                 textViewBlock.setText("Fail to read Blocks!!!");
@@ -261,6 +323,12 @@ public class readnfc extends AppCompatActivity {
 
     private void getDetail(String inputIDstring, int checkID,String day,String period,String place) {
 //        Toast.makeText(this, "getDetail", Toast.LENGTH_SHORT).show();
+        if(day==null)
+            day="";
+        if(period==null)
+            period="";
+        if(place==null)
+            place="";
         User id = new User(inputIDstring, checkID,day,period,place);
         Call<GetResponse> call = getdetail.getDetail(id);
         call.enqueue(new Callback<GetResponse>() {
@@ -340,6 +408,7 @@ public class readnfc extends AppCompatActivity {
         });
 
     }
+
 
 
 }

@@ -51,7 +51,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Name :"
+                    android:text="ชื่อบัณฑิท:"
                     android:textSize="20sp"/>
                 <TextView
                     android:layout_width="wrap_content"
@@ -95,7 +95,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="student ID is :"
+                    android:text="รหัสนักศึกษา :"
                     android:textSize="20sp"/>
 
 
@@ -109,7 +109,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Faculty :"
+                    android:text="คณะ :"
                     android:textSize="20sp"/>
                 <TextView
                     android:layout_width="wrap_content"
@@ -124,9 +124,9 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Check1 :"
+                        android:text="วันซ้อมย่อย :"
                         android:id="@+id/check1"
-                        android:textSize="20sp"/>
+                        android:textSize="15sp"/>
 
 
 
@@ -151,9 +151,9 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Check2 :"
+                        android:text="วันซ้อมใหญ่ :"
                         android:id="@+id/check2"
-                        android:textSize="20sp"/>
+                        android:textSize="15sp"/>
 
 
 
@@ -178,9 +178,9 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Check3 :"
+                        android:text="วันรับจริง :"
                         android:id="@+id/check3"
-                        android:textSize="20sp"/>
+                        android:textSize="15sp"/>
 
                     <ImageView
                         android:layout_toRightOf="@id/check3"

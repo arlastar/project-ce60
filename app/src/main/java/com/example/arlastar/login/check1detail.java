@@ -43,12 +43,16 @@ public class check1detail extends AppCompatActivity  {
     ArrayList<String> placeresult;
     ArrayList<String> dayresult;
     ArrayList<String> periodresult;
+    String day,period,place;
+    int checkID;
 
     List<placeresponse> placeresponses = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        Intent intent = getIntent();
+        checkID = intent.getIntExtra("check",0 );
         setContentView(R.layout.activity_check1detail);
         Log.i("VOLLEY", "helloooooooo startttttttttttt");
 
@@ -154,13 +158,55 @@ public class check1detail extends AppCompatActivity  {
                                 dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                                 spinner.setAdapter(dataAdapter);
 
+                                spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+                                    @Override
+                                    public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
+                                        Log.i("check1detail", adapterView.getItemAtPosition(position).toString());
+                                        place=adapterView.getItemAtPosition(position).toString();
+                                    }
+
+                                    @Override
+                                    public void onNothingSelected(AdapterView<?> adapterView) {
+
+                                    }
+                                });
+
                                 ArrayAdapter<String> dataAdapter1 = new ArrayAdapter<String>(getApplicationContext(), R.layout.spinner_item, dayresult);
                                 dataAdapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                                 spinner2.setAdapter(dataAdapter1);
 
+                                spinner2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+                                    @Override
+                                    public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
+                                        Log.i("check1detail", adapterView.getItemAtPosition(position).toString());
+                                        day=adapterView.getItemAtPosition(position).toString();
+                                    }
+
+                                    @Override
+                                    public void onNothingSelected(AdapterView<?> adapterView) {
+
+                                    }
+                                });
+
                                 ArrayAdapter<String> dataAdapter2 = new ArrayAdapter<String>(getApplicationContext(), R.layout.spinner_item, periodresult);
                                 dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                                 spinner3.setAdapter(dataAdapter2);
+
+                                spinner3.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+                                    @Override
+                                    public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
+                                        Log.i("check1detail", adapterView.getItemAtPosition(position).toString());
+                                        period=adapterView.getItemAtPosition(position).toString();
+                                    }
+
+                                    @Override
+                                    public void onNothingSelected(AdapterView<?> adapterView) {
+
+                                    }
+                                });
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
@@ -213,6 +259,11 @@ public class check1detail extends AppCompatActivity  {
     public void OK(){
 
         Intent intent =new Intent(this,readnfc.class);
+        intent.putExtra("day", day);
+        intent.putExtra("period", period);
+        intent.putExtra("place", place);
+        intent.putExtra("check", 1);
+
         startActivity(intent);
         finish();
 

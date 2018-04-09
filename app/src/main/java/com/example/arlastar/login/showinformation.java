@@ -113,6 +113,7 @@ public class showinformation extends AppCompatActivity implements View.OnClickLi
 
                     student_id = response.body().get(0).getStudent_id();
                     student_idtxt.setText(student_id);
+                    textViewBlock.setBackgroundResource(R.color.orange2);
                     studentnamestring = response.body().get(0).getNameTitle() + response.body().get(0).getFirstName() + " " + response.body().get(0).getLastName();
                     studentname.setText(studentnamestring);
                     order = response.body().get(0).getOrder();
