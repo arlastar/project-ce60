@@ -365,9 +365,10 @@ public class readnfc extends AppCompatActivity {
 
                     } else
                         student_thirdcheck.setImageResource(R.drawable.wrong);
+                    url1="http://161.246.35.220:9090";
                     url1 = url1 + response.body().getImage();
                     loadImageFromUrl(url1);
-                    textViewBlock.setText("Check Name Successfully ");
+                    textViewBlock.setText("เช็คชื่อสำเร็จ ");
                     textViewBlock.setBackgroundResource(R.color.green);
 
 
@@ -377,7 +378,7 @@ public class readnfc extends AppCompatActivity {
 
 //                    Toast.makeText(readnfc.this, ""+student_id, Toast.LENGTH_SHORT).show();
                 } else {
-                    textViewBlock.setText(userID );
+                    textViewBlock.setText("ไม่พบข้อมูลกรุณาติดต่อเจ้าหน้าที่" );
                     textViewBlock.setBackgroundResource(R.color.red);
 
                     Toast.makeText(readnfc.this, "" + response.code(), Toast.LENGTH_SHORT).show();

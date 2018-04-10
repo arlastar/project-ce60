@@ -20,7 +20,8 @@ tools:context="com.example.arlastar.login.search">
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Please fill in student ID before serch:"/>
+        android:textColor="#000000"
+        android:text="กรุณาใส่รหัสนักศึกษา8หลักก่อนค้นหา:"/>
 
     <ImageView
         android:layout_width="150dp"
@@ -38,7 +39,7 @@ tools:context="com.example.arlastar.login.search">
         android:padding="16dp"
         android:ems="1"
         android:inputType="number"
-        android:hint="Student ID"
+        android:hint="รหัสนักศึกษา"
         android:background="#c7ff932e"
         android:drawablePadding="78dp"
         android:textColorHint="#fff"
@@ -51,7 +52,7 @@ tools:context="com.example.arlastar.login.search">
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:text="Search"
+        android:text="search"
         android:textAllCaps="true"
         android:textColor="#fff"
         android:background="@drawable/background_btn2"

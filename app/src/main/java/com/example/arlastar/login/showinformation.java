@@ -110,43 +110,49 @@ public class showinformation extends AppCompatActivity implements View.OnClickLi
                 Toast.makeText(showinformation.this, "" + response.code(), Toast.LENGTH_SHORT).show();
                 Log.e("Error response code",""+response.code());
                 if (response.code() == 200) {
+                    if (response.body().size() !=0) {
+                        student_id = response.body().get(0).getStudent_id();
 
-                    student_id = response.body().get(0).getStudent_id();
-                    student_idtxt.setText(student_id);
-                    textViewBlock.setBackgroundResource(R.color.orange2);
-                    studentnamestring = response.body().get(0).getNameTitle() + response.body().get(0).getFirstName() + " " + response.body().get(0).getLastName();
-                    studentname.setText(studentnamestring);
-                    order = response.body().get(0).getOrder();
-                    student_order.setText(Integer.toString(order));
-                    studentplace = response.body().get(0).getPeriod() +  " " + response.body().get(0).getPlace();
-                    student_place.setText(studentplace);
-                    faculty = response.body().get(0).getFaculty();
-                    student_faculty.setText(faculty);
-
-
-                    firstcheck = response.body().get(0).getFirstCheck();
-                    if (firstcheck) {
-                        student_firstcheck.setImageResource(R.drawable.correct2);
+                        student_idtxt.setText(student_id);
+                        textViewBlock.setBackgroundResource(R.color.orange2);
+                        studentnamestring = response.body().get(0).getNameTitle() + response.body().get(0).getFirstName() + " " + response.body().get(0).getLastName();
+                        studentname.setText(studentnamestring);
+                        order = response.body().get(0).getOrder();
+                        student_order.setText(Integer.toString(order));
+                        studentplace = response.body().get(0).getPeriod() + " " + response.body().get(0).getPlace();
+                        student_place.setText(studentplace);
+                        faculty = response.body().get(0).getFaculty();
+                        student_faculty.setText(faculty);
 
 
-                    } else
-                        student_firstcheck.setImageResource(R.drawable.wrong);
+                        firstcheck = response.body().get(0).getFirstCheck();
+                        if (firstcheck) {
+                            student_firstcheck.setImageResource(R.drawable.correct2);
 
-                    secondcheck = response.body().get(0).getSecondCheck();
-                    if (secondcheck) {
-                        student_secondcheck.setImageResource(R.drawable.correct2);
 
-                    } else
-                        student_secondcheck.setImageResource(R.drawable.wrong);
+                        } else
+                            student_firstcheck.setImageResource(R.drawable.wrong);
 
-                    thirdcheck = response.body().get(0).getThirdCheck();
-                    if (thirdcheck) {
-                        student_thirdcheck.setImageResource(R.drawable.correct2);
+                        secondcheck = response.body().get(0).getSecondCheck();
+                        if (secondcheck) {
+                            student_secondcheck.setImageResource(R.drawable.correct2);
 
-                    } else
-                        student_thirdcheck.setImageResource(R.drawable.wrong);
-                    url = url + response.body().get(0).getImage();
-                    loadImageFromUrl(url);
+                        } else
+                            student_secondcheck.setImageResource(R.drawable.wrong);
+
+                        thirdcheck = response.body().get(0).getThirdCheck();
+                        if (thirdcheck) {
+                            student_thirdcheck.setImageResource(R.drawable.correct2);
+
+                        } else
+                            student_thirdcheck.setImageResource(R.drawable.wrong);
+                        url = url + response.body().get(0).getImage();
+                        loadImageFromUrl(url);
+                    }else {
+                        textViewBlock.setText("ไม่พบข้อมูลกรุณาติดต่อเจ้าหน้าที่ ");
+                        textViewBlock.setBackgroundResource(R.color.red);
+                    }
+
 
 
 
