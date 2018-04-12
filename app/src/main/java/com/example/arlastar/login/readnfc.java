@@ -178,7 +178,7 @@ public class readnfc extends AppCompatActivity {
     }
     @Override
     public void onBackPressed() {
-        Intent intent =new Intent(this,Mainfunction.class);
+        Intent intent =new Intent(this,check.class);
         startActivity(intent);
         finish();
 
@@ -338,12 +338,16 @@ public class readnfc extends AppCompatActivity {
                 if (response.code() == 200) {
                     student_id = response.body().getStudent_id();
                     student_idtxt.setText(student_id);
+                    student_idtxt.setBackgroundResource(R.color.orange2);
                     studentnamestring = response.body().getNameTitle() + response.body().getFirstName() + " " + response.body().getLastName();
                     studentname.setText(studentnamestring);
+                    studentname.setBackgroundResource(R.color.orange2);
                     faculty = response.body().getFaculty();
                     student_faculty.setText(faculty);
+                    student_faculty.setBackgroundResource(R.color.orange2);
                     major = response.body().getMajor();
                     student_major.setText(major);
+                    student_major.setBackgroundResource(R.color.orange2);
                     firstcheck = response.body().getFirstCheck();
                     if (firstcheck) {
                         student_firstcheck.setImageResource(R.drawable.correct2);
@@ -377,8 +381,14 @@ public class readnfc extends AppCompatActivity {
 
 
 //                    Toast.makeText(readnfc.this, ""+student_id, Toast.LENGTH_SHORT).show();
-                } else {
+                } else if (response.code() == 404) {
                     textViewBlock.setText("ไม่พบข้อมูลกรุณาติดต่อเจ้าหน้าที่" );
+                    textViewBlock.setBackgroundResource(R.color.red);
+
+                    Toast.makeText(readnfc.this, "" + response.code(), Toast.LENGTH_SHORT).show();
+                }
+                else if (response.code() == 400) {
+                    textViewBlock.setText("กรุณาติดต่อเจ้าหน้าที่เนื่องจากขาดการซ้อมหรือเข้าซ้อมผิดสถานที่" );
                     textViewBlock.setBackgroundResource(R.color.red);
 
                     Toast.makeText(readnfc.this, "" + response.code(), Toast.LENGTH_SHORT).show();

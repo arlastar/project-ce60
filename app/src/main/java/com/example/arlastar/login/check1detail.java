@@ -1,6 +1,7 @@
 package com.example.arlastar.login;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -11,6 +12,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.NetworkResponse;
@@ -45,6 +47,7 @@ public class check1detail extends AppCompatActivity  {
     ArrayList<String> periodresult;
     String day,period,place;
     int checkID;
+
 
     List<placeresponse> placeresponses = new ArrayList<>();
     @Override
@@ -257,15 +260,35 @@ public class check1detail extends AppCompatActivity  {
     }
 
     public void OK(){
+        TextView errorText1 = (TextView)spinner.getSelectedView();
+        TextView errorText2 = (TextView)spinner2.getSelectedView();
+        TextView errorText3 = (TextView)spinner3.getSelectedView();
 
         Intent intent =new Intent(this,readnfc.class);
         intent.putExtra("day", day);
         intent.putExtra("period", period);
         intent.putExtra("place", place);
         intent.putExtra("check", 1);
+        if( place ==null){
+            errorText1.setError("");
+            errorText1.setTextColor(Color.RED);//just to highlight that this is an error
+            errorText1.setText("กรุณาเลือกสถานที่ซ้อม!!");//changes the selected item text to this
+            }
+            else if(day==null){
+            errorText2.setError("");
+            errorText2.setTextColor(Color.RED);//just to highlight that this is an error
+            errorText2.setText("กรุณาเลือกวันที่ซ้อม!!");
+        }else if(period==null){
+            errorText3.setError("");
+            errorText3.setTextColor(Color.RED);//just to highlight that this is an error
+            errorText3.setText("กรุณาเลือกวันที่ซ้อม!!");
+        }else {
 
-        startActivity(intent);
-        finish();
+            startActivity(intent);
+            finish();
+
+        }
+
 
 
     }
@@ -276,6 +299,14 @@ public class check1detail extends AppCompatActivity  {
 
         void onResponse(Object response);
     }
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this, check.class);
+        startActivity(intent);
+        finish();
+    }
+
+
 
 
 

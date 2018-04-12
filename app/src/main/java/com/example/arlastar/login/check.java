@@ -95,6 +95,15 @@ public class check extends AppCompatActivity implements View.OnClickListener {
                     break;
             }
         }
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this, Mainfunction.class);
+        startActivity(intent);
+        finish();
+    }
+
+
+
 
 
 
