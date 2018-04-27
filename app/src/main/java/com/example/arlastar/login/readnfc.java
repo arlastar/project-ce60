@@ -96,6 +96,7 @@ public class readnfc extends AppCompatActivity {
         textViewInfo = (TextView) findViewById(R.id.info);
         //textViewTagInfo = (TextView)findViewById(R.id.taginfo);
         textViewBlock = (TextView) findViewById(R.id.block);
+        TextViewBlock1 = (TextView) findViewById(R.id.bLock1);
         //statuscode=findViewById(R.id.statuscode);
 
         studentname = findViewById(R.id.studentname);
@@ -285,6 +286,7 @@ public class readnfc extends AppCompatActivity {
 
 
 
+
             return null;
         }
 
@@ -310,11 +312,28 @@ public class readnfc extends AppCompatActivity {
                 //if(day  != "")&&(period)
                 Log.i("readnfc", userID + " " + String.valueOf(checkID) + " " + day + " " + period + " " + place);
 
-
+                TextViewBlock1.setText("");
+                student_idtxt.setText("");
+                student_major.setText("");
+                studentname.setText("");
+                student_faculty.setText("");
+                student_firstcheck.setImageResource(0);
+                student_secondcheck.setImageResource(0);
+                student_thirdcheck.setImageResource(0);
+                imageView.setImageResource(0);
                 getDetail(userID, checkID,day,period,place);
                 //checkID = 0;
 
             } else {
+                TextViewBlock1.setText("");
+                student_idtxt.setText("");
+                student_major.setText("");
+                studentname.setText("");
+                student_faculty.setText("");
+                student_firstcheck.setImageResource(0);
+                student_secondcheck.setImageResource(0);
+                student_thirdcheck.setImageResource(0);
+                imageView.setImageResource(0);
                 textViewBlock.setText("Fail to read Blocks!!!");
                 textViewBlock.setBackgroundResource(R.color.red);
             }

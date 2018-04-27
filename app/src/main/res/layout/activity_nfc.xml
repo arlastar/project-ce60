@@ -10,6 +10,14 @@
     android:layout_marginRight="16dp">
 
     android:baselineAligned="false">
+        <TextView
+            android:id="@+id/bLock1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="โปรดวางบัตรแนบกับด้านหลังโทรศัพท์"
+            android:layout_gravity="center_horizontal"
+            android:textSize="17sp"
+            android:background="@color/orange2"/>
         <ImageView
             android:layout_width="180dp"
             android:layout_height="180dp"
@@ -19,6 +27,7 @@
             android:layout_marginBottom="1dp"
 
             android:id="@+id/imageView"/>
+
 
         <TextView
             android:id="@+id/block"
